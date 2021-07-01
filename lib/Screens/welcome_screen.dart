@@ -55,10 +55,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  ScrollingImage('random_images/3.jpg', 270),
-                  ScrollingImage('random_images/2.jpg', 270),
-                  ScrollingImage('random_images/1.jpg', 270),
-                  ScrollingImage('random_images/0.jpg', 270),
+                  BannerOffers('random_images/3.jpg'),
+                  BannerOffers('random_images/2.jpg'),
+                  BannerOffers('random_images/1.jpg'),
+                  BannerOffers('random_images/0.jpg'),
                 ],
               ),
             ),
@@ -112,10 +112,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  ScrollingImage('random_images/3.jpg', 160),
-                  ScrollingImage('random_images/2.jpg', 160),
-                  ScrollingImage('random_images/1.jpg', 160),
-                  ScrollingImage('random_images/0.jpg', 160),
+                  LowerProducts('random_images/3.jpg'),
+                  LowerProducts('random_images/2.jpg'),
+                  LowerProducts('random_images/1.jpg'),
+                  LowerProducts('random_images/0.jpg'),
                 ],
               ),
             ),
@@ -160,10 +160,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 }
 
-class ScrollingImage extends StatelessWidget {
+class LowerProducts extends StatelessWidget {
   final String address;
-  final double wid;
-  ScrollingImage(this.address, this.wid);
+  LowerProducts(this.address);
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +170,109 @@ class ScrollingImage extends StatelessWidget {
       onTap: () {},
       child: Container(
         height: 160,
-        width: wid,
+        width: 130,
+        margin: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          image: DecorationImage(
+            image: AssetImage(address),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Container(
+                    padding:
+                        EdgeInsets.only(left: 7, right: 7, top: 2, bottom: 2),
+                    child: Text(
+                      '30% OFF',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 11,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 5, left: 5, right: 5),
+                padding: EdgeInsets.only(left: 8, top: 6),
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                    )),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Product Name',
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '₹199',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          '₹199',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BannerOffers extends StatelessWidget {
+  final String address;
+  BannerOffers(this.address);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        height: 160,
+        width: 270,
         margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),

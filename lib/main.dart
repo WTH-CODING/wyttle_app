@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Screens/welcome_screen.dart';
+import 'Screens/cart_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
         initialRoute: WelcomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => WelcomeScreen(),
+          CartScreen.id: (context) => CartScreen(),
         });
   }
 }
