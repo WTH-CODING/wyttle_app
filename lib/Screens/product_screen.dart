@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wyttle_app/widgets/widget.dart';
+import '../widgets/CarouselProduct.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -21,45 +22,10 @@ class _ProductScreenState extends State<ProductScreen> {
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.only(top: 7),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.45,
-                    width: MediaQuery.of(context).size.width * 0.98,
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('random_images/3.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.45,
-                    width: MediaQuery.of(context).size.width * 0.98,
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('random_images/1.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.45,
-                    width: MediaQuery.of(context).size.width * 0.98,
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('random_images/2.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              margin: EdgeInsets.only(top: 10),
+              // height: MediaQuery.of(context).size.height * 0.45,
+              // width: MediaQuery.of(context).size.width * 0.98,
+              child: CustomIndicator(),
             ),
           ),
           Expanded(
