@@ -293,16 +293,17 @@ class IconAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 45,
-        margin: EdgeInsets.only(right: marg),
-        padding: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          color: Colors.black12,
-        ),
-        child: Icon(
-          iconData,
-          color: Colors.black,
-        ));
+      width: 45,
+      margin: EdgeInsets.only(right: marg),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: Colors.black12,
+      ),
+      child: Icon(
+        iconData,
+        color: Colors.black,
+      ),
+    );
   }
 }
