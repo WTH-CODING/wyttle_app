@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wyttle_app/data/color.dart';
+import 'package:wyttle_app/widgets/widget.dart';
 
 class CartScreen extends StatefulWidget {
   static String id = "CartScreen";
@@ -32,6 +32,39 @@ class _CartScreenState extends State<CartScreen> {
         centerTitle: true,
       ),
       body: CartProductTile(),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.all(10),
+        height: 115,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Total',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                ),
+                Text(
+                  '₹159',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xff5680E9),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            MainButton('BUY NOW'),
+          ],
+        ),
+      ),
     );
   }
 }
