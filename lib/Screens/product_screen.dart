@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wyttle_app/widgets/widget.dart';
-import '../widgets/CarouselProduct.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductScreen extends StatefulWidget {
   static String id = "ProductScreen";
@@ -11,195 +8,141 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  int numberOfReviews = 100;
-  bool stockAvailable = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            flex: 1,
-            child: CustomIndicator(),
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey[50],
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Product Name',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      RatingBar.builder(
-                        initialRating: 3.5,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        glow: false,
-                        ignoreGestures: true,
-                        itemCount: 5,
-                        itemSize: 20,
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (value) {},
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        '($numberOfReviews Reviews)',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            '₹199',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '₹199',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        stockAvailable
-                            ? 'Available in stock'
-                            : 'Not available in stock',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    'About',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Declare desctextshowflag this bool variable as global, and are there any way to increase the text widget height dynamically because here I want to give the maxline property as default, this maxline property also',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    height: 70,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ProductSize('XS'),
-                        ProductSize('S'),
-                        ProductSize('M'),
-                        ProductSize('L'),
-                        ProductSize('XL'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+          onPressed: () {},
+        ),
+        title: Text(
+          'Category Name',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(10),
-        child: MainButton('ADD TO CART'),
+      body: GridView(
+        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: MediaQuery.of(context).size.width /
+              (MediaQuery.of(context).size.height / 1.5),
+        ),
+        children: [
+          LowerProducts('random_images/3.jpg'),
+          LowerProducts('random_images/2.jpg'),
+          LowerProducts('random_images/1.jpg'),
+          LowerProducts('random_images/0.jpg'),
+          LowerProducts('random_images/3.jpg'),
+        ],
       ),
     );
   }
 }
 
-class ProductSize extends StatefulWidget {
-  final String size;
-  ProductSize(this.size);
-  @override
-  _ProductSizeState createState() => _ProductSizeState();
-}
+class LowerProducts extends StatelessWidget {
+  final String address;
+  LowerProducts(this.address);
 
-class _ProductSizeState extends State<ProductSize> {
-  Color bgColor = Colors.white;
-  Color txtColor = Colors.black;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          bgColor = Color(0xffebefff);
-          txtColor = Color(0xff5680E9);
-        });
-      },
+      onTap: () {},
       child: Container(
-        width: 45,
-        height: 45,
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(5),
+        // height: 300,
+        // width: MediaQuery.of(context).size.width * 0.49,
+        // padding: EdgeInsets.all(1),
+        margin: EdgeInsets.all(1),
         decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
+          // border: Border.all(color: Colors.black45, width: .8),
+          // borderRadius: BorderRadius.all(Radius.circular(12)),
+          image: DecorationImage(
+            image: AssetImage(address),
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            widget.size,
-            style: TextStyle(
-              fontSize: 18,
-              color: txtColor,
-            ),
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // SizedBox(
+                  //   width: 1,
+                  // ),
+                  Container(
+                    padding:
+                        EdgeInsets.only(left: 7, right: 7, top: 2, bottom: 2),
+                    child: Text(
+                      '30% OFF',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 11,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      // borderRadius: BorderRadius.all(
+                      //   Radius.circular(12),
+                      // ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 8, top: 6),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.only(
+                  //   bottomLeft: Radius.circular(12),
+                  //   bottomRight: Radius.circular(12),
+                  // )
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Product Name',
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '₹199',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          '₹199',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
