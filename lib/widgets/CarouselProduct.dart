@@ -25,6 +25,7 @@ class CustomIndicatorState extends State<CustomIndicator> {
         CarouselSlider.builder(
           itemCount: listPaths.length,
           options: CarouselOptions(
+            aspectRatio: 11 / 9,
             onPageChanged: (index, reason) {
               setState(() {
                 currentPos = index;
