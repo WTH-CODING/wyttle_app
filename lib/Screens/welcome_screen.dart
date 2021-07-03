@@ -14,7 +14,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueGrey[50],
         leading: IconButton(
           onPressed: () {},
           icon: IconAppBar(Icons.menu, 0),
@@ -27,6 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ],
       ),
       body: Container(
+        color: Colors.blueGrey[50],
         padding: EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -104,11 +105,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               margin: EdgeInsets.only(top: 7),
-              height: 190,
+              height: 210,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -123,6 +124,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
       ),
       bottomNavigationBar: Container(
+        color: Colors.blueGrey[50],
         padding: EdgeInsets.only(bottom: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -169,8 +171,8 @@ class LowerProducts extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        height: 160,
-        width: 130,
+        height: 180,
+        width: 150,
         margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -187,7 +189,7 @@ class LowerProducts extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 7,
+                    width: 1,
                   ),
                   Container(
                     padding:
@@ -213,11 +215,10 @@ class LowerProducts extends StatelessWidget {
                       size: 20,
                       color: Colors.white,
                     ),
-                  )
+                  ),
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 5, left: 5, right: 5),
                 padding: EdgeInsets.only(left: 8, top: 6),
                 height: 50,
                 decoration: BoxDecoration(
@@ -241,6 +242,9 @@ class LowerProducts extends StatelessWidget {
                         Text(
                           '₹199',
                           style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          width: 5,
                         ),
                         Text(
                           '₹199',

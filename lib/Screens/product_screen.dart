@@ -21,12 +21,7 @@ class _ProductScreenState extends State<ProductScreen> {
         children: [
           Expanded(
             flex: 1,
-            child: Container(
-              margin: EdgeInsets.only(top: 10),
-              // height: MediaQuery.of(context).size.height * 0.45,
-              // width: MediaQuery.of(context).size.width * 0.98,
-              child: CustomIndicator(),
-            ),
+            child: CustomIndicator(),
           ),
           Expanded(
             flex: 1,
