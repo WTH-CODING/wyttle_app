@@ -28,7 +28,9 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           'My orders',

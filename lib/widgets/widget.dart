@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductView extends StatelessWidget {
   final String address;
@@ -89,6 +90,28 @@ class ProductView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class IconAppBar extends StatelessWidget {
+  final iconData;
+  final double marg;
+  IconAppBar(this.iconData, this.marg);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 45,
+        margin: EdgeInsets.only(right: marg),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          color: Colors.black12,
+        ),
+        child: Center(
+          child: FaIcon(
+            iconData,
+            color: Colors.black54,
+          ),
+        ));
   }
 }
 

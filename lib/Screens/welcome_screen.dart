@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wyttle_app/Screens/myorders_screen.dart';
+import 'package:wyttle_app/Screens/search_screen.dart';
+import 'package:wyttle_app/widgets/widget.dart';
+import 'package:wyttle_app/Screens/wishlist_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "WelcomeScreen";
@@ -40,7 +44,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, SearchScreen.id);
+            },
             icon: IconAppBar(Icons.search, 0),
           ),
         ],
@@ -140,17 +146,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               onPressed: () {},
               icon: Icon(
                 Icons.home_filled,
-                color: Colors.black45,
+                color: Color(0xff5680E9),
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, WishlistScreen.id);
+                },
                 icon: Icon(
                   Icons.bookmark_add,
                   color: Colors.black45,
                 )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, MyOrdersScreen.id);
+                },
                 icon: Icon(
                   Icons.shopping_cart_rounded,
                   color: Colors.black45,
@@ -259,27 +269,5 @@ class BannerOffers extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class IconAppBar extends StatelessWidget {
-  final iconData;
-  final double marg;
-  IconAppBar(this.iconData, this.marg);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 45,
-        margin: EdgeInsets.only(right: marg),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          color: Colors.black12,
-        ),
-        child: Center(
-          child: FaIcon(
-            iconData,
-            color: Colors.black54,
-          ),
-        ));
   }
 }

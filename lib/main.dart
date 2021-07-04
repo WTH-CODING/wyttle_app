@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wyttle_app/Screens/myorders_screen.dart';
 import 'package:wyttle_app/Screens/product_details.dart';
 import 'package:wyttle_app/Screens/product_screen.dart';
+import 'package:wyttle_app/Screens/search_screen.dart';
 import 'package:wyttle_app/Screens/wishlist_screen.dart';
 import 'Screens/welcome_screen.dart';
 import 'Screens/cart_screen.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           ProductScreen.id: (context) => ProductScreen(),
           MyOrdersScreen.id: (context) => MyOrdersScreen(),
           WishlistScreen.id: (context) => WishlistScreen(),
+          SearchScreen.id: (context) => SearchScreen(),
         });
   }
 }

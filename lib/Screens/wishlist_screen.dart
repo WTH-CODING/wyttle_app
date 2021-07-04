@@ -28,7 +28,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           'My wishlist',
