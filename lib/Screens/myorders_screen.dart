@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wyttle_app/widgets/widget.dart';
 
-class WishlistScreen extends StatefulWidget {
-  static String id = "WishlistScreen";
+class MyOrdersScreen extends StatefulWidget {
+  static String id = "MyOrdersScreen";
 
   @override
-  _WishlistScreenState createState() => _WishlistScreenState();
+  _MyOrdersScreenState createState() => _MyOrdersScreenState();
 }
 
-class _WishlistScreenState extends State<WishlistScreen> {
+class _MyOrdersScreenState extends State<MyOrdersScreen> {
   List<String> address = [
     "random_images/3.jpg",
     "random_images/2.jpg",
@@ -31,7 +31,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
           onPressed: () {},
         ),
         title: Text(
-          'My wishlist',
+          'My orders',
           style: TextStyle(color: Colors.black),
         ),
       ),
