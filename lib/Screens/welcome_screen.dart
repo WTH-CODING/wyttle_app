@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "WelcomeScreen";
@@ -66,23 +67,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Top Categories',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'SEE ALL',
-                  style: TextStyle(
-                      fontSize: 13, color: Theme.of(context).primaryColor),
-                ),
-              ],
+            Text(
+              'Categories',
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+              ),
             ),
+            // Text(
+            //   'SEE ALL',
+            //   style: TextStyle(
+            //       fontSize: 13, color: Theme.of(context).primaryColor),
+            // ),
             SizedBox(
               height: 20,
             ),
@@ -92,15 +88,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
-                  IconAppBar(Icons.watch, 10),
+                  IconAppBar(FontAwesomeIcons.tshirt, 10),
+                  IconAppBar(FontAwesomeIcons.trophy, 10),
+                  IconAppBar(FontAwesomeIcons.userShield, 10),
+                  IconAppBar(FontAwesomeIcons.dumbbell, 10),
+                  IconAppBar(FontAwesomeIcons.mars, 10),
+                  IconAppBar(FontAwesomeIcons.venus, 10),
                 ],
               ),
             ),
@@ -262,17 +255,16 @@ class IconAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 45,
-      margin: EdgeInsets.only(right: marg),
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        color: Colors.black12,
-      ),
-      child: Icon(
-        iconData,
-        color: Colors.black,
-      ),
-    );
+        width: 45,
+        margin: EdgeInsets.only(right: marg),
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          color: Colors.black12,
+        ),
+        child: FaIcon(
+          iconData,
+          color: Colors.black,
+        ));
   }
 }
