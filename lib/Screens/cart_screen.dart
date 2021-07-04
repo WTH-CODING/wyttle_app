@@ -113,18 +113,18 @@ class _CartProductTileState extends State<CartProductTile> {
                 children: [
                   Text(
                     'Product Name',
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
                   ),
                   SizedBox(
-                    height: 9,
+                    height: 27,
                   ),
-                  Text(
-                    'Size : 38',
-                    style: TextStyle(fontSize: 13, color: Colors.black54),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
+                  // Text(
+                  //   'Size : 38',
+                  //   style: TextStyle(fontSize: 13, color: Colors.black54),
+                  // ),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
