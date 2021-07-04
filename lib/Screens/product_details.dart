@@ -75,25 +75,21 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            '₹199',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '₹199',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        '₹199',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 18),
                       ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // Text(
+                      //   '₹199',
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.w300,
+                      //     decoration: TextDecoration.lineThrough,
+                      //   ),
+                      // ),
                       Text(
                         stockAvailable
                             ? 'Available in stock'
@@ -125,23 +121,23 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                       color: Colors.black54,
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    height: 70,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ProductSize('XS'),
-                        ProductSize('S'),
-                        ProductSize('M'),
-                        ProductSize('L'),
-                        ProductSize('XL'),
-                      ],
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 15,
+                  // ),
+                  // Container(
+                  //   margin: EdgeInsets.symmetric(vertical: 10),
+                  //   height: 70,
+                  //   child: ListView(
+                  //     scrollDirection: Axis.horizontal,
+                  //     children: [
+                  //       ProductSize('XS'),
+                  //       ProductSize('S'),
+                  //       ProductSize('M'),
+                  //       ProductSize('L'),
+                  //       ProductSize('XL'),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -156,53 +152,53 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
   }
 }
 
-class ProductSize extends StatefulWidget {
-  final String size;
-  ProductSize(this.size);
-  @override
-  _ProductSizeState createState() => _ProductSizeState();
-}
+// class ProductSize extends StatefulWidget {
+//   final String size;
+//   ProductSize(this.size);
+//   @override
+//   _ProductSizeState createState() => _ProductSizeState();
+// }
 
-class _ProductSizeState extends State<ProductSize> {
-  Color bgColor = Colors.white;
-  Color txtColor = Colors.black;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          bgColor = Color(0xffebefff);
-          txtColor = Color(0xff5680E9);
-        });
-      },
-      child: Container(
-        width: 45,
-        height: 45,
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            widget.size,
-            style: TextStyle(
-              fontSize: 18,
-              color: txtColor,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class _ProductSizeState extends State<ProductSize> {
+//   Color bgColor = Colors.white;
+//   Color txtColor = Colors.black;
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: () {
+//         setState(() {
+//           bgColor = Color(0xffebefff);
+//           txtColor = Color(0xff5680E9);
+//         });
+//       },
+//       child: Container(
+//         width: 45,
+//         height: 45,
+//         margin: EdgeInsets.all(10),
+//         padding: EdgeInsets.all(5),
+//         decoration: BoxDecoration(
+//           color: bgColor,
+//           borderRadius: BorderRadius.all(Radius.circular(12)),
+//           boxShadow: [
+//             BoxShadow(
+//               color: Colors.grey.withOpacity(0.3),
+//               spreadRadius: 1,
+//               blurRadius: 1,
+//               offset: Offset(0, 3), // changes position of shadow
+//             ),
+//           ],
+//         ),
+//         child: Align(
+//           alignment: Alignment.center,
+//           child: Text(
+//             widget.size,
+//             style: TextStyle(
+//               fontSize: 18,
+//               color: txtColor,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
