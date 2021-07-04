@@ -20,35 +20,35 @@ class ProductView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 7, right: 7, top: 2, bottom: 2),
-                    child: Text(
-                      '30% OFF',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 11,
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(12),
-                          bottomRight: Radius.circular(12)),
-                      color: Colors.white,
-                    ),
+              // Container(
+              //   padding: EdgeInsets.only(left: 90),
+              //   // padding:
+              //   //     EdgeInsets.only(left: 7, right: 7, top: 2, bottom: 2),
+              //   child: Text(
+              //     '30% OFF',
+              //     style: TextStyle(
+              //       fontWeight: FontWeight.w500,
+              //       fontSize: 11,
+              //     ),
+              //   ),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.only(
+              //         topRight: Radius.circular(12),
+              //         bottomRight: Radius.circular(12)),
+              //     color: Colors.white,
+              //   ),
+              // ),
+              Container(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 3),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.favorite,
+                    size: 20,
+                    color: Colors.white,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite,
-                      size: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(left: 8, top: 6),
@@ -57,7 +57,8 @@ class ProductView extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'Product Name',
@@ -66,24 +67,20 @@ class ProductView extends StatelessWidget {
                     SizedBox(
                       height: 6,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '₹199',
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          '₹199',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      '₹199',
+                      style: TextStyle(fontWeight: FontWeight.w700),
                     ),
+                    // SizedBox(
+                    //   width: 5,
+                    // ),
+                    // Text(
+                    //   '₹199',
+                    //   style: TextStyle(
+                    //     fontWeight: FontWeight.w300,
+                    //     decoration: TextDecoration.lineThrough,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
