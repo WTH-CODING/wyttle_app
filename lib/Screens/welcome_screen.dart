@@ -9,6 +9,24 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  List<String> bannerImage = [
+    "random_images/3.jpg",
+    "random_images/2.jpg",
+    "random_images/1.jpg",
+    "random_images/0.jpg",
+    "random_images/3.jpg",
+    "random_images/2.jpg",
+    "random_images/1.jpg",
+  ];
+  List<String> lowerProductImage = [
+    "random_images/3.jpg",
+    "random_images/2.jpg",
+    "random_images/1.jpg",
+    "random_images/0.jpg",
+    "random_images/3.jpg",
+    "random_images/2.jpg",
+    "random_images/1.jpg",
+  ];
   String name = "Shasank";
   @override
   Widget build(BuildContext context) {
@@ -54,14 +72,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               margin: EdgeInsets.only(top: 7),
               height: 160,
-              child: ListView(
+              child: ListView.builder(
+                itemCount: bannerImage.length,
+                itemBuilder: (context, index) {
+                  return BannerOffers(bannerImage[index]);
+                },
                 scrollDirection: Axis.horizontal,
-                children: [
-                  BannerOffers('random_images/3.jpg'),
-                  BannerOffers('random_images/2.jpg'),
-                  BannerOffers('random_images/1.jpg'),
-                  BannerOffers('random_images/0.jpg'),
-                ],
               ),
             ),
             SizedBox(
@@ -103,14 +119,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               margin: EdgeInsets.only(top: 7),
               height: 210,
-              child: ListView(
+              child: ListView.builder(
+                itemCount: lowerProductImage.length,
+                itemBuilder: (context, index) {
+                  return LowerProducts(lowerProductImage[index]);
+                },
                 scrollDirection: Axis.horizontal,
-                children: [
-                  LowerProducts('random_images/3.jpg'),
-                  LowerProducts('random_images/2.jpg'),
-                  LowerProducts('random_images/1.jpg'),
-                  LowerProducts('random_images/0.jpg'),
-                ],
               ),
             ),
           ],
@@ -156,8 +170,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 }
 
 class LowerProducts extends StatelessWidget {
-  final String address;
-  LowerProducts(this.address);
+  final String bannerImage;
+  LowerProducts(this.bannerImage);
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +184,7 @@ class LowerProducts extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           image: DecorationImage(
-            image: AssetImage(address),
+            image: AssetImage(bannerImage),
             fit: BoxFit.cover,
           ),
         ),
@@ -225,8 +239,8 @@ class LowerProducts extends StatelessWidget {
 }
 
 class BannerOffers extends StatelessWidget {
-  final String address;
-  BannerOffers(this.address);
+  final String bannerImage;
+  BannerOffers(this.bannerImage);
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +253,7 @@ class BannerOffers extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
           image: DecorationImage(
-            image: AssetImage(address),
+            image: AssetImage(bannerImage),
             fit: BoxFit.cover,
           ),
         ),
