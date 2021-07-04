@@ -249,7 +249,7 @@ class BannerOffers extends StatelessWidget {
 }
 
 class IconAppBar extends StatelessWidget {
-  final IconData iconData;
+  final iconData;
   final double marg;
   IconAppBar(this.iconData, this.marg);
   @override
@@ -257,14 +257,15 @@ class IconAppBar extends StatelessWidget {
     return Container(
         width: 45,
         margin: EdgeInsets.only(right: marg),
-        padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           color: Colors.black12,
         ),
-        child: FaIcon(
-          iconData,
-          color: Colors.black,
+        child: Center(
+          child: FaIcon(
+            iconData,
+            color: Colors.black54,
+          ),
         ));
   }
 }
