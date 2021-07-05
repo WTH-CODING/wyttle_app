@@ -51,7 +51,6 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Container(
         padding: EdgeInsets.all(12),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(

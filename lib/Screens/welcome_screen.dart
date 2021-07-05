@@ -38,10 +38,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.blueGrey[50],
-        leading: IconButton(
-          onPressed: () {},
-          icon: IconAppBar(Icons.menu, 0),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Drawer();
+        //   },
+        //   icon: IconAppBar(Icons.menu, 0),
+        // ),
         actions: [
           IconButton(
             onPressed: () {
@@ -50,6 +52,73 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             icon: IconAppBar(Icons.search, 0),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.blueGrey[50],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                'images/banner.jpeg',
+                height: 240,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.thLarge),
+                  ),
+                  Text(
+                    'Shop by Categories',
+                  )
+                ],
+              ),
+              Divider(
+                indent: 10,
+                endIndent: 10,
+                color: Colors.black45,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.boxOpen),
+                  ),
+                  Text(
+                    'My Orders',
+                  ),
+                ],
+              ),
+              Divider(
+                indent: 10,
+                endIndent: 10,
+                color: Colors.black45,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.only(left: 50),
+                child: InkWell(
+                  child: Text('FAQs'),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.only(left: 50),
+                child: InkWell(
+                  child: Text('CONTACT US'),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.only(left: 50),
+                child: InkWell(
+                  child: Text('LEGAL'),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: Container(
         color: Colors.blueGrey[50],
