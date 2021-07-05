@@ -39,15 +39,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.blueGrey[50],
-        // leading: IconButton(
-        //   onPressed: () {
-        //     // Scaffold.of(context).openDrawer();
-        //     // Drawer();
-        //     // Navigator.push(context, Drawer);
-        //     // GlobalKey<ScaffoldState>().currentState?.openDrawer();
-        //   },
-        //   icon: IconAppBar(Icons.menu, 0),
-        // ),
+        leading: IconButton(
+          onPressed: () {
+            final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+            _drawerKey.currentState?.openEndDrawer();
+            // Scaffold.of(context).openDrawer();
+            // Drawer();
+            // Navigator.push(context, Drawer);
+            // GlobalKey<ScaffoldState>().currentState?.openDrawer();
+          },
+          icon: IconAppBar(Icons.menu, 0),
+        ),
         actions: [
           IconButton(
             onPressed: () {
