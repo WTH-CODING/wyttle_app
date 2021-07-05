@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wyttle_app/Screens/cart_screen.dart';
 import 'package:wyttle_app/Screens/myorders_screen.dart';
 import 'package:wyttle_app/Screens/search_screen.dart';
 import 'package:wyttle_app/widgets/widget.dart';
@@ -63,32 +64,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 'images/banner.jpeg',
                 height: 240,
               ),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(FontAwesomeIcons.thLarge),
-                  ),
-                  Text(
-                    'Shop by Categories',
-                  )
-                ],
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, SearchScreen.id);
+                },
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: FaIcon(FontAwesomeIcons.thLarge),
+                    ),
+                    Text(
+                      'Shop by Categories',
+                    )
+                  ],
+                ),
               ),
               Divider(
                 indent: 10,
                 endIndent: 10,
                 color: Colors.black45,
               ),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(FontAwesomeIcons.boxOpen),
-                  ),
-                  Text(
-                    'My Orders',
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, MyOrdersScreen.id);
+                },
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: FaIcon(FontAwesomeIcons.boxOpen),
+                    ),
+                    Text(
+                      'My Orders',
+                    ),
+                  ],
+                ),
               ),
               Divider(
                 indent: 10,
@@ -228,7 +241,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 )),
             IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, MyOrdersScreen.id);
+                  Navigator.pushNamed(context, CartScreen.id);
                 },
                 icon: Icon(
                   Icons.shopping_cart_rounded,
