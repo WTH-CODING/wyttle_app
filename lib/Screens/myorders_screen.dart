@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wyttle_app/Screens/rating_screen.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   static String id = "MyOrdersScreen";
@@ -9,6 +10,7 @@ class MyOrdersScreen extends StatefulWidget {
 
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
   List<String> address = [
+    "random_images/4.png",
     "random_images/3.jpg",
     "random_images/2.jpg",
     "random_images/1.jpg",
@@ -103,7 +105,15 @@ class MyOrdersTile extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RatingScreen(this.address, this.productName),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Rate this product',
                       style: TextStyle(
