@@ -74,12 +74,12 @@ class _SearchScreenState extends State<SearchScreen> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  IconAppBar(FontAwesomeIcons.tshirt, 10),
-                  IconAppBar(FontAwesomeIcons.trophy, 10),
-                  IconAppBar(FontAwesomeIcons.userShield, 10),
-                  IconAppBar(FontAwesomeIcons.dumbbell, 10),
-                  IconAppBar(FontAwesomeIcons.mars, 10),
-                  IconAppBar(FontAwesomeIcons.venus, 10),
+                  IconAppBar(FontAwesomeIcons.tshirt, 10, (){}),
+                  IconAppBar(FontAwesomeIcons.trophy, 10, (){}),
+                  IconAppBar(FontAwesomeIcons.userShield, 10, (){}),
+                  IconAppBar(FontAwesomeIcons.dumbbell, 10, (){}),
+                  IconAppBar(FontAwesomeIcons.mars, 10, (){}),
+                  IconAppBar(FontAwesomeIcons.venus, 10, (){}),
                 ],
               ),
             ),

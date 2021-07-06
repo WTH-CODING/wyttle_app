@@ -12,6 +12,7 @@ class User {
         required this.photoUrl,
         required this.numOfCoins,
         required this.id,
+        required this.address,
         required this.name,
         required this.email,
         required this.cart,
@@ -25,6 +26,7 @@ class User {
     String photoUrl;
     int numOfCoins;
     String id;
+    String address;
     String name;
     String email;
     List<dynamic> cart;
@@ -35,6 +37,7 @@ class User {
         isverified: json["isverified"],
         blocked: json["blocked"],
         phone: json["phone"] == null ? "":json["phone"],
+        address: json["address"] == null ? "":json["address"],
         photoUrl: json["photoUrl"],
         numOfCoins: json["numOfCoins"],
         id: json["_id"],
@@ -49,6 +52,7 @@ class User {
         "isverified": isverified,
         "blocked": blocked,
         "phone": phone,
+        "address": address,
         "photoUrl": photoUrl,
         "numOfCoins": numOfCoins,
         "_id": id,

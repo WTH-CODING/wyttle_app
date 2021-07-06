@@ -159,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       minWidth: 360,
       height: 55,
-      color: Colors.cyan,
+      color: Colors.cyan.shade700,
       onPressed: () async {
         await login();
       },

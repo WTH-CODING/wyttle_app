@@ -96,22 +96,26 @@ class ProductView extends StatelessWidget {
 class IconAppBar extends StatelessWidget {
   final iconData;
   final double marg;
-  IconAppBar(this.iconData, this.marg);
+  Function tap;
+  IconAppBar(this.iconData, this.marg, this.tap);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 45,
-        margin: EdgeInsets.only(right: marg),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          color: Colors.black12,
-        ),
-        child: Center(
-          child: FaIcon(
-            iconData,
-            color: Colors.black54,
+    return InkWell(
+      onTap: tap(),
+      child: Container(
+          width: 45,
+          margin: EdgeInsets.only(right: marg),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            color: Colors.black12,
           ),
-        ));
+          child: Center(
+            child: FaIcon(
+              iconData,
+              color: Colors.black54,
+            ),
+          )),
+    );
   }
 }
 
