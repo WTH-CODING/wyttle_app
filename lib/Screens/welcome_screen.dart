@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wyttle_app/Screens/addData_screen.dart';
 import 'package:wyttle_app/Screens/cart_screen.dart';
 import 'package:wyttle_app/Screens/myorders_screen.dart';
 import 'package:wyttle_app/Screens/search_screen.dart';
+import 'package:wyttle_app/models/user.dart';
+import 'package:wyttle_app/services/userservice.dart';
 import 'package:wyttle_app/widgets/widget.dart';
 import 'package:wyttle_app/Screens/wishlist_screen.dart';
 
@@ -14,6 +17,23 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    switcher();
+  }
+
+  switcher() async {
+    User user = await UserService.getUser();
+    if (user.phone == "") {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => AddDataScreen(),
+        ),
+      );
+    }
+  }
+
   List<String> bannerImage = [
     "random_images/3.jpg",
     "random_images/2.jpg",
@@ -67,7 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                'images/banner.jpeg',
+                'assets/images/banner.jpeg',
                 height: 240,
               ),
               InkWell(
