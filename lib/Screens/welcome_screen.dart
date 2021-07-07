@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wyttle_app/Screens/addData_screen.dart';
 import 'package:wyttle_app/Screens/cart_screen.dart';
+import 'package:wyttle_app/Screens/contactus.dart';
+import 'package:wyttle_app/Screens/faqs.dart';
 import 'package:wyttle_app/Screens/myorders_screen.dart';
 import 'package:wyttle_app/Screens/search_screen.dart';
 import 'package:wyttle_app/models/product.dart';
@@ -166,6 +168,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       margin: EdgeInsets.symmetric(vertical: 10),
                       padding: EdgeInsets.only(left: 50),
                       child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => FAQ()));
+                        },
                         child: Text('FAQs'),
                       ),
                     ),
@@ -173,14 +180,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       margin: EdgeInsets.symmetric(vertical: 10),
                       padding: EdgeInsets.only(left: 50),
                       child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ContactUs()));
+                        },
                         child: Text('CONTACT US'),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      padding: EdgeInsets.only(left: 50),
-                      child: InkWell(
-                        child: Text('LEGAL'),
                       ),
                     ),
                   ],
