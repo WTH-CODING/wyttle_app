@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     if (checkFields()) {
       var msg = await AuthService.authenticate(email, password);
-      if (msg == "Sign in successfull") {
+      if (msg == "Sign in successful") {
         showInSnackBar(context, msg, 1000);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(

@@ -58,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
     if (checkFields()) {
       var msg = await AuthService.register(name, email, password);
-      if (msg == "Sign up successfull") {
+      if (msg == "Sign up successful") {
         showInSnackBar(context, msg, 1000);
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => LoginScreen()));
@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          "Already Register? Sign In!",
+          "Already a user? Sign In!",
           style: GoogleFonts.nunito(
             color: Color(0xffA09898),
             fontSize: 16,
@@ -163,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await login();
       },
       child: Text(
-        "Login",
+        "Sign Up",
         style: GoogleFonts.nunito(
           color: Colors.white,
           fontSize: 20,
