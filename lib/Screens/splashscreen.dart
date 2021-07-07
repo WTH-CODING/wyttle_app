@@ -45,11 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         );
       } else {
-         Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => LoginScreen(),
-        ),
-      );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
       }
     }
   }
@@ -71,14 +71,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/images/Group 1.png", height: 200,),
+                  Image.asset(
+                    "assets/images/Group 1.png",
+                    height: 200,
+                  ),
                 ],
               ),
             ),
           ),
           Expanded(
             child: Text(
-              "Made with ❤ By Team 13",
+              "Made with ❤ By Team 15",
               style: GoogleFonts.nunito(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

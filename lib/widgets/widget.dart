@@ -96,7 +96,7 @@ class ProductView extends StatelessWidget {
 class IconAppBar extends StatelessWidget {
   final iconData;
   final double marg;
-  Function tap;
+  final Function tap;
   IconAppBar(this.iconData, this.marg, this.tap);
   @override
   Widget build(BuildContext context) {

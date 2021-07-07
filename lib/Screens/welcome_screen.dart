@@ -392,7 +392,7 @@ IconAppBar1(iconData, marg, isSelected) {
 }
 
 class LowerProducts extends StatelessWidget {
-  Product product;
+  final Product product;
   LowerProducts(this.product);
 
   @override
