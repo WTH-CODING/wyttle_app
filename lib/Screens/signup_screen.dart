@@ -58,8 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
     if (checkFields()) {
       var msg = await AuthService.register(name, email, password);
-      if (msg == "Sign up successful") {
-        showInSnackBar(context, msg, 1000);
+      if (msg == "Sign up successfull") {
+        showInSnackBar(context, 'Sign up successful', 1000);
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => LoginScreen()));
       } else {
