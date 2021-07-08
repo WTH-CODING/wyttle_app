@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wyttle_app/Screens/addData_screen.dart';
-import 'package:wyttle_app/Screens/cart_screen.dart';
-import 'package:wyttle_app/Screens/myorders_screen.dart';
-import 'package:wyttle_app/Screens/search_screen.dart';
 import 'package:wyttle_app/models/product.dart';
 import 'package:wyttle_app/models/user.dart';
 import 'package:wyttle_app/services/productService.dart';
 import 'package:wyttle_app/services/userservice.dart';
-import 'package:wyttle_app/widgets/widget.dart';
-import 'package:wyttle_app/Screens/wishlist_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "WelcomeScreen";

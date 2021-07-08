@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wyttle_app/Screens/login_screen.dart';
@@ -61,8 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (checkFields()) {
       var msg = await AuthService.register(name, email, password);
       if (msg == "Sign up successfull") {
-        showInSnackBar(context, msg, 1000);
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
+        showInSnackBar(context, 'Sign up successful', 1000);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => LoginScreen()));
       } else {
         showInSnackBar(context, msg, 1000);
       }
@@ -122,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          "Already Register? Sign In!",
+          "Already a user? Sign In!",
           style: GoogleFonts.nunito(
             color: Color(0xffA09898),
             fontSize: 16,
@@ -164,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await login();
       },
       child: Text(
-        "Login",
+        "Sign Up",
         style: GoogleFonts.nunito(
           color: Colors.white,
           fontSize: 20,

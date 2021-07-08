@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wyttle_app/Screens/signup_screen.dart';
@@ -61,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (checkFields()) {
       var msg = await AuthService.authenticate(email, password);
       if (msg == "Sign in successfull") {
-        showInSnackBar(context, msg, 1000);
+        showInSnackBar(context, 'Sign in successful', 1000);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => WelcomeScreen(),
