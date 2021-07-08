@@ -21,23 +21,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey[50],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          'My wishlist',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Container(
+           body: Container(
         color: Colors.blueGrey[50],
         child: GridView.builder(
             gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wyttle_app/Screens/landing_screen.dart';
 import 'package:wyttle_app/Screens/login_screen.dart';
 import 'package:wyttle_app/Screens/welcome_screen.dart';
 import 'package:wyttle_app/services/authserice.dart';
@@ -41,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (verify) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => WelcomeScreen(),
+            builder: (context) => LandingScreen(),
           ),
         );
       } else {

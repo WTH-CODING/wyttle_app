@@ -33,14 +33,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   List<Product> catProduct = [];
 
   getCatProducts(String catergory, int i) async {
-    print("Dsa");
     setState(() {
       loader2 = true;
       catProduct.clear();
+      list2.clear();
       cat = [false, false, false, false, false, false];
     });
     catProduct = await ProductService.getProductByCategroy(catergory);
-    print(catProduct.length);
+    list2 = List.generate(catProduct.length, (index) => false);
     setState(() {
       cat[i] = true;
       loader2 = false;
@@ -50,8 +50,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   getData() async {
     setState(() {
       loader = true;
+      list1.clear();
     });
     homeProduct = await ProductService.gethomeProducts();
+    list1 = List.generate(homeProduct.length, (index) => false);
     user = await UserService.getUser();
     switcher();
     getCatProducts("Jerseys", 0);
@@ -76,6 +78,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     "https://image.freepik.com/free-vector/flat-design-mega-sale-discount-banner-template_151676-28.jpg",
   ];
 
+  List<bool> list1 = [];
+  List<bool> list2 = [];
+
   List<bool> cat = [true, false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
@@ -85,108 +90,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           )
         : Scaffold(
             backgroundColor: Colors.blueGrey[50],
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.blueGrey[50],
-              leading: IconButton(
-                onPressed: () {
-                  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-                  _drawerKey.currentState?.openEndDrawer();
-                  // Scaffold.of(context).openDrawer();
-                  // Drawer();
-                  // Navigator.push(context, Drawer);
-                  // GlobalKey<ScaffoldState>().currentState?.openDrawer();
-                },
-                icon: IconAppBar(Icons.menu, 0, () {}),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, SearchScreen.id);
-                  },
-                  icon: IconAppBar(Icons.search, 0, () {}),
-                ),
-              ],
-            ),
-            drawer: Drawer(
-              child: Container(
-                color: Colors.blueGrey[50],
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/banner.jpeg',
-                      height: 240,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, SearchScreen.id);
-                      },
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.thLarge),
-                          ),
-                          Text(
-                            'Shop by Categories',
-                          )
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      indent: 10,
-                      endIndent: 10,
-                      color: Colors.black45,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, MyOrdersScreen.id);
-                      },
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.boxOpen),
-                          ),
-                          Text(
-                            'My Orders',
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      indent: 10,
-                      endIndent: 10,
-                      color: Colors.black45,
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      padding: EdgeInsets.only(left: 50),
-                      child: InkWell(
-                        child: Text('FAQs'),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      padding: EdgeInsets.only(left: 50),
-                      child: InkWell(
-                        child: Text('CONTACT US'),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      padding: EdgeInsets.only(left: 50),
-                      child: InkWell(
-                        child: Text('LEGAL'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             body: SingleChildScrollView(
               padding: EdgeInsets.all(15),
               child: Column(
@@ -237,7 +140,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: ListView.builder(
                       itemCount: homeProduct.length,
                       itemBuilder: (context, index) {
-                        return LowerProducts(homeProduct[index]);
+                        return lowerProducts(homeProduct[index], list1[index],
+                            () {
+                          setState(() {
+                            list1[index] = !list1[index];
+                          });
+                        });
                       },
                       scrollDirection: Axis.horizontal,
                     ),
@@ -321,7 +229,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               : ListView.builder(
                                   itemCount: catProduct.length,
                                   itemBuilder: (context, index) {
-                                    return LowerProducts(homeProduct[index]);
+                                    return lowerProducts(
+                                        homeProduct[index], list2[index], () {
+                                      setState(() {
+                                        list2[index] = !list2[index];
+                                      });
+                                    });
                                   },
                                   scrollDirection: Axis.horizontal,
                                 ),
@@ -330,73 +243,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ],
               ),
             ),
-            bottomNavigationBar: Container(
-              color: Colors.blueGrey[50],
-              padding: EdgeInsets.only(bottom: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.home_filled,
-                      color: Color(0xff5680E9),
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, WishlistScreen.id);
-                      },
-                      icon: Icon(
-                        Icons.bookmark_add,
-                        color: Colors.black45,
-                      )),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, CartScreen.id);
-                      },
-                      icon: Icon(
-                        Icons.shopping_cart_rounded,
-                        color: Colors.black45,
-                      )),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.black45,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           );
   }
-}
 
-// ignore: must_be_immutable
-// ignore: non_constant_identifier_names
-IconAppBar1(iconData, marg, isSelected) {
-  return Container(
-      width: 45,
-      margin: EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        color: Colors.black12,
-      ),
-      child: Center(
-        child: FaIcon(
-          iconData,
-          color: isSelected ? Colors.cyan.shade700 : Colors.black54,
-        ),
-      ));
-}
-
-class LowerProducts extends StatelessWidget {
-  Product product;
-  LowerProducts(this.product);
-
-  @override
-  Widget build(BuildContext context) {
+  lowerProducts(product, bo, func) {
     return InkWell(
       onTap: () {},
       child: Container(
@@ -416,13 +266,19 @@ class LowerProducts extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.only(left: 90),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.favorite,
-                    size: 20,
-                    color: Colors.white,
-                  ),
+                child: MaterialButton(
+                  onPressed: func,
+                  child: bo
+                      ? Icon(
+                          Icons.favorite,
+                          size: 20,
+                          color: Colors.red,
+                        )
+                      : Icon(
+                          Icons.favorite_border,
+                          size: 20,
+                          color: Colors.red,
+                        ),
                 ),
               ),
               Container(
@@ -458,6 +314,24 @@ class LowerProducts extends StatelessWidget {
       ),
     );
   }
+}
+
+// ignore: must_be_immutable
+// ignore: non_constant_identifier_names
+IconAppBar1(iconData, marg, isSelected) {
+  return Container(
+      width: 45,
+      margin: EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: Colors.black12,
+      ),
+      child: Center(
+        child: FaIcon(
+          iconData,
+          color: isSelected ? Colors.cyan.shade700 : Colors.black54,
+        ),
+      ));
 }
 
 class BannerOffers extends StatelessWidget {

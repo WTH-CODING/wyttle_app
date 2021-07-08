@@ -12,27 +12,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-        ),
-        title: Text(
-          'My Cart',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.blueGrey[50],
       body: CartProductTile(),
       bottomNavigationBar: Container(
         padding: EdgeInsets.all(10),

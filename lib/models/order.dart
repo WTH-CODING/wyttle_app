@@ -5,6 +5,8 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
+import 'package:wyttle_app/models/user.dart';
+
 List<Order> orderFromJson(String str) => List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
 
 String orderToJson(List<Order> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -181,66 +183,3 @@ class ShippingInfo {
     };
 }
 
-class User {
-    User({
-        required this.isverified,
-        required this.blocked,
-        required this.photoUrl,
-        required this.numOfCoins,
-        required this.id,
-        required this.name,
-        required this.email,
-        required this.password,
-        required this.cart,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.v,
-        required this.wishlist,
-    });
-
-    final bool isverified;
-    final bool blocked;
-    final String photoUrl;
-    final int numOfCoins;
-    final String id;
-    final String name;
-    final String email;
-    final String password;
-    final List<dynamic> cart;
-    final DateTime createdAt;
-    final DateTime updatedAt;
-    final int v;
-    final List<dynamic> wishlist;
-
-    factory User.fromJson(Map<String, dynamic> json) => User(
-        isverified: json["isverified"],
-        blocked: json["blocked"],
-        photoUrl: json["photoUrl"],
-        numOfCoins: json["numOfCoins"],
-        id: json["_id"],
-        name: json["name"],
-        email: json["email"],
-        password: json["password"],
-        cart: List<dynamic>.from(json["cart"].map((x) => x)),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-        wishlist: List<dynamic>.from(json["wishlist"].map((x) => x)),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "isverified": isverified,
-        "blocked": blocked,
-        "photoUrl": photoUrl,
-        "numOfCoins": numOfCoins,
-        "_id": id,
-        "name": name,
-        "email": email,
-        "password": password,
-        "cart": List<dynamic>.from(cart.map((x) => x)),
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
-        "wishlist": List<dynamic>.from(wishlist.map((x) => x)),
-    };
-}
