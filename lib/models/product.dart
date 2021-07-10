@@ -24,8 +24,8 @@ class Product {
         required this.v,
     });
 
-    final int price;
-    final int ratings;
+    final double price;
+    final double ratings;
     final int numOfReviews;
     final int stock;
     final String id;
@@ -39,8 +39,8 @@ class Product {
     final int v;
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
-        price: json["price"],
-        ratings: json["ratings"],
+        price: double.parse(json["price"].toString()),
+        ratings: double.parse(json["ratings"].toString()),
         numOfReviews: json["numOfReviews"],
         stock: json["stock"],
         id: json["_id"],

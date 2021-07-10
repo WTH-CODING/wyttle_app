@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wyttle_app/Screens/addData_screen.dart';
+import 'package:wyttle_app/Screens/product_details.dart';
 import 'package:wyttle_app/models/product.dart';
 import 'package:wyttle_app/models/user.dart';
 import 'package:wyttle_app/services/productService.dart';
@@ -77,6 +78,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   List<bool> list2 = [];
 
   List<bool> cat = [true, false, false, false, false, false];
+  bool sitchScreen = false;
   @override
   Widget build(BuildContext context) {
     return loader
@@ -243,7 +245,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   lowerProducts(product, bo, func) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(
+              product: product,
+            ),
+          ),
+        );
+      },
       child: Container(
         height: 180,
         width: 150,

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:wyttle_app/models/product.dart';
 import 'package:wyttle_app/widgets/widget.dart';
 import 'package:wyttle_app/widgets/CarouselProduct.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   static String id = "ProductDetailsScreen";
+  Product product;
+
+  ProductDetailsScreen({required this.product});
 
   @override
   _ProductScreenState createState() => _ProductScreenState();
@@ -31,7 +35,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Product Name',
+                    widget.product.name,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -43,7 +47,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                   Row(
                     children: [
                       RatingBar.builder(
-                        initialRating: 3.5,
+                        initialRating: widget.product.ratings.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -61,7 +65,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                         width: 20,
                       ),
                       Text(
-                        '($numberOfReviews Reviews)',
+                        '(${widget.product.numOfReviews+1} Reviews)',
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.black54,
@@ -76,22 +80,12 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '₹199',
+                        '₹${widget.product.price}',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 18),
                       ),
-                      // SizedBox(
-                      //   width: 5,
-                      // ),
-                      // Text(
-                      //   '₹199',
-                      //   style: TextStyle(
-                      //     fontWeight: FontWeight.w300,
-                      //     decoration: TextDecoration.lineThrough,
-                      //   ),
-                      // ),
                       Text(
-                        stockAvailable
+                        widget.product.stock>0
                             ? 'Available in stock'
                             : 'Not available in stock',
                         style: TextStyle(
@@ -121,23 +115,6 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                       color: Colors.black54,
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 15,
-                  // ),
-                  // Container(
-                  //   margin: EdgeInsets.symmetric(vertical: 10),
-                  //   height: 70,
-                  //   child: ListView(
-                  //     scrollDirection: Axis.horizontal,
-                  //     children: [
-                  //       ProductSize('XS'),
-                  //       ProductSize('S'),
-                  //       ProductSize('M'),
-                  //       ProductSize('L'),
-                  //       ProductSize('XL'),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -151,54 +128,3 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
     );
   }
 }
-
-// class ProductSize extends StatefulWidget {
-//   final String size;
-//   ProductSize(this.size);
-//   @override
-//   _ProductSizeState createState() => _ProductSizeState();
-// }
-
-// class _ProductSizeState extends State<ProductSize> {
-//   Color bgColor = Colors.white;
-//   Color txtColor = Colors.black;
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(
-//       onTap: () {
-//         setState(() {
-//           bgColor = Color(0xffebefff);
-//           txtColor = Color(0xff5680E9);
-//         });
-//       },
-//       child: Container(
-//         width: 45,
-//         height: 45,
-//         margin: EdgeInsets.all(10),
-//         padding: EdgeInsets.all(5),
-//         decoration: BoxDecoration(
-//           color: bgColor,
-//           borderRadius: BorderRadius.all(Radius.circular(12)),
-//           boxShadow: [
-//             BoxShadow(
-//               color: Colors.grey.withOpacity(0.3),
-//               spreadRadius: 1,
-//               blurRadius: 1,
-//               offset: Offset(0, 3), // changes position of shadow
-//             ),
-//           ],
-//         ),
-//         child: Align(
-//           alignment: Alignment.center,
-//           child: Text(
-//             widget.size,
-//             style: TextStyle(
-//               fontSize: 18,
-//               color: txtColor,
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
