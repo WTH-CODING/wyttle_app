@@ -5,46 +5,50 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<User> userFromJson(String str) => List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+import 'package:wyttle_app/models/product.dart';
 
-String userToJson(List<User> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+List<User> userFromJson(String str) =>
+    List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+
+String userToJson(List<User> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class User {
-    User({
-        required this.isverified,
-        required this.blocked,
-        required this.photoUrl,
-        required this.numOfCoins,
-        required this.id,
-        required this.name,
-        required this.email,
-        required this.password,
-        required this.cart,
-        required this.wishlist,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.v,
-        required this.address,
-        required this.phone,
-    });
+  User({
+    required this.isverified,
+    required this.blocked,
+    required this.photoUrl,
+    required this.numOfCoins,
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.cart,
+    required this.wishlist,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.v,
+    required this.address,
+    required this.phone,
+  });
 
-    bool isverified;
-    bool blocked;
-    String photoUrl;
-    int numOfCoins;
-    String id;
-    String name;
-    String email;
-    String password;
-    List<Cart> cart;
-    List<Wishlist> wishlist;
-    DateTime createdAt;
-    DateTime updatedAt;
-    int v;
-    String address;
-    String phone;
+  bool isverified;
+  bool blocked;
+  String photoUrl;
+  int numOfCoins;
+  String id;
+  String name;
+  String email;
+  String password;
+  List<Cart> cart;
+  List<Wishlist> wishlist;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
+  String address;
+  String phone;
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         isverified: json["isverified"],
         blocked: json["blocked"],
         photoUrl: json["photoUrl"],
@@ -54,15 +58,16 @@ class User {
         email: json["email"],
         password: json["password"],
         cart: List<Cart>.from(json["cart"].map((x) => Cart.fromJson(x))),
-        wishlist: List<Wishlist>.from(json["wishlist"].map((x) => Wishlist.fromJson(x))),
+        wishlist: List<Wishlist>.from(
+            json["wishlist"].map((x) => Wishlist.fromJson(x))),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
         address: json["address"],
         phone: json["phone"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "isverified": isverified,
         "blocked": blocked,
         "photoUrl": photoUrl,
@@ -78,49 +83,49 @@ class User {
         "__v": v,
         "address": address,
         "phone": phone,
-    };
+      };
 }
 
 class Cart {
-    Cart({
-        required this.id,
-        required this.item,
-        required this.count,
-    });
+  Cart({
+    required this.id,
+    required this.item,
+    required this.count,
+  });
 
-    String id;
-    String item;
-    int count;
+  String id;
+  Product item;
+  int count;
 
-    factory Cart.fromJson(Map<String, dynamic> json) => Cart(
+  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
         id: json["_id"],
-        item: json["item"],
+        item: Product.fromJson(json["item"]),
         count: json["count"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
         "item": item,
         "count": count,
-    };
+      };
 }
 
 class Wishlist {
-    Wishlist({
-        required this.id,
-        required this.item,
-    });
+  Wishlist({
+    required this.id,
+    required this.item,
+  });
 
-    String id;
-    String item;
+  String id;
+  Product item;
 
-    factory Wishlist.fromJson(Map<String, dynamic> json) => Wishlist(
+  factory Wishlist.fromJson(Map<String, dynamic> json) => Wishlist(
         id: json["_id"],
-        item: json["item"],
-    );
+        item: Product.fromJson(json["item"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
         "item": item,
-    };
+      };
 }

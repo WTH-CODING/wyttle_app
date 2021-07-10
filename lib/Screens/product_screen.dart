@@ -47,7 +47,8 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
             itemCount: address.length,
             itemBuilder: (context, index) {
-              return ProductView(address[index]);
+              // return ProductView(address[index]);
+              return Container();
             }),
       ),
     );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wyttle_app/models/product.dart';
 
 class ProductView extends StatelessWidget {
-  final String address;
-  ProductView(this.address);
+  final Product product;
+  ProductView({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class ProductView extends StatelessWidget {
         margin: EdgeInsets.all(1),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(address),
+            image: NetworkImage(product.imageurl),
             fit: BoxFit.cover,
           ),
         ),
@@ -21,24 +22,6 @@ class ProductView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //   padding: EdgeInsets.only(left: 90),
-              //   // padding:
-              //   //     EdgeInsets.only(left: 7, right: 7, top: 2, bottom: 2),
-              //   child: Text(
-              //     '30% OFF',
-              //     style: TextStyle(
-              //       fontWeight: FontWeight.w500,
-              //       fontSize: 11,
-              //     ),
-              //   ),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.only(
-              //         topRight: Radius.circular(12),
-              //         bottomRight: Radius.circular(12)),
-              //     color: Colors.white,
-              //   ),
-              // ),
               Container(
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width / 3),
@@ -62,26 +45,16 @@ class ProductView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Product Name',
+                      product.name,
                       style: TextStyle(fontWeight: FontWeight.w300),
                     ),
                     SizedBox(
                       height: 6,
                     ),
                     Text(
-                      '₹199',
+                      '₹${product.price}',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
-                    // SizedBox(
-                    //   width: 5,
-                    // ),
-                    // Text(
-                    //   '₹199',
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.w300,
-                    //     decoration: TextDecoration.lineThrough,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

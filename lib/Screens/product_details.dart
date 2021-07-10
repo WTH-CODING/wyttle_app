@@ -23,6 +23,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(height:30),
           Expanded(
             flex: 1,
             child: CustomIndicator(),
