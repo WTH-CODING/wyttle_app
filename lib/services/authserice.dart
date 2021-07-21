@@ -118,8 +118,8 @@ class AuthService extends BaseService {
     print(response.body);
     var responseMap = json.decode(response.body);
     if (response.statusCode == 200) {
-      User user = User.fromJson(responseMap["user"]);
-      print(user.toJson());
+      // User user = User.fromJson(responseMap["user"]);
+      // print(user.toJson());
       return responseMap["message"];
     } else {
       return responseMap["message"];

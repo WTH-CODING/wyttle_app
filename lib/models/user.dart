@@ -49,22 +49,22 @@ class User {
   String phone;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        isverified: json["isverified"],
-        blocked: json["blocked"],
-        photoUrl: json["photoUrl"],
-        numOfCoins: json["numOfCoins"],
-        id: json["_id"],
-        name: json["name"],
-        email: json["email"],
-        password: json["password"],
+       id: json["_id"] == null ? "null" : json["_id"],
+        isverified: json["isverified"] == null ? "null" : json["isverified"],
+        blocked: json["blocked"] == null ? "null" : json["blocked"],
+        photoUrl: json["photoUrl"] == null ? "null" : json["photoUrl"],
+        numOfCoins: json["numOfCoins"] == null ? "null" : json["numOfCoins"],
+        name: json["name"] == null ? "null" : json["name"],
+        email: json["email"] == null ? "null" : json["email"],
+        password: json["password"] == null ? "null" : json["password"],
         cart: List<Cart>.from(json["cart"].map((x) => Cart.fromJson(x))),
         wishlist: List<Wishlist>.from(
             json["wishlist"].map((x) => Wishlist.fromJson(x))),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-        address: json["address"],
-        phone: json["phone"],
+         v: json["__v"] == null ? "null" : json["__v"],
+        address: json["address"] == null ? "null" : json["address"],
+        phone: json["phone"]  == null ? "" : json["phone"],
       );
 
   Map<String, dynamic> toJson() => {
