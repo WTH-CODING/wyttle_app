@@ -13,6 +13,8 @@ import 'package:wyttle_app/services/userservice.dart';
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:wyttle_app/widgets/snackbar.dart';
 
+import 'landing_screen.dart';
+
 class AddDataScreen extends StatefulWidget {
   const AddDataScreen({Key? key}) : super(key: key);
 
@@ -38,6 +40,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
       loader = true;
     });
     user = await UserService.getUser();
+    uploadDp(File("assets/images/signup.png"), user.id);
     setState(() {
       loader = false;
     });
@@ -262,7 +265,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                 if (updated) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => WelcomeScreen(),
+                      builder: (context) => LandingScreen(),
                     ),
                   );
                 } else {
