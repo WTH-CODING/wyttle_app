@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wyttle_app/Screens/rating_screen.dart';
+import 'package:wyttle_app/models/order.dart';
+import 'package:wyttle_app/models/user.dart';
+import 'package:wyttle_app/services/orderService.dart';
+import 'package:wyttle_app/services/userservice.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   static String id = "MyOrdersScreen";
@@ -20,6 +24,27 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
     "random_images/1.jpg",
   ];
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  bool loader = false;
+  List<Order> orders = [];
+  late User user;
+  getData() async {
+    setState(() {
+      loader = true;
+    });
+    user = await UserService.getUser();
+    orders = await OrderService.getAllOrdersByUserId(user.id);
+    setState(() {
+      loader = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -38,29 +63,27 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Container(
-        color: Colors.blueGrey[50],
-        child: ListView.builder(
-            itemCount: address.length,
-            itemBuilder: (context, index) {
-              return MyOrdersTile(
-                  address: address[index],
-                  productName: 'Product Name',
-                  isDelivered: false);
-            }),
-      ),
+      body: loader
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : Container(
+              color: Colors.blueGrey[50],
+              child: ListView.builder(
+                  itemCount: orders.length,
+                  itemBuilder: (context, index) {
+                    return MyOrdersTile(
+                      order: orders[index],
+                    );
+                  }),
+            ),
     );
   }
 }
 
 class MyOrdersTile extends StatelessWidget {
-  MyOrdersTile(
-      {required this.address,
-      required this.productName,
-      required this.isDelivered});
-  final bool isDelivered;
-  final String productName;
-  final String address;
+  MyOrdersTile({required this.order});
+  final Order order;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +104,7 @@ class MyOrdersTile extends StatelessWidget {
             width: 110,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(address),
+                image: NetworkImage(order.orderItems!.first.item!.imageurl),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.all(
@@ -97,11 +120,13 @@ class MyOrdersTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isDelivered ? '  Order Delivered' : '  On the way',
+                    order.orderStatus == "Delivered "
+                        ? '  Order Delivered'
+                        : '  On the way',
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                   ),
                   Text(
-                    '   ' + productName,
+                    '   ' + order.id.toString(),
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
                   ),
                   TextButton(
@@ -109,8 +134,9 @@ class MyOrdersTile extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              RatingScreen(this.address, this.productName),
+                          builder: (context) => RatingScreen(
+                              order.orderItems!.first.item!.imageurl,
+                              order.orderItems!.first.item!.name),
                         ),
                       );
                     },

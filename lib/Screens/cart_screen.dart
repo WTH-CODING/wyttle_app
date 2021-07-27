@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:wyttle_app/models/order.dart';
 import 'package:wyttle_app/models/product.dart';
 import 'package:wyttle_app/models/user.dart';
+import 'package:wyttle_app/services/orderService.dart';
 import 'package:wyttle_app/services/userservice.dart';
 import 'package:wyttle_app/widgets/widget.dart';
 
@@ -35,7 +39,7 @@ class _CartScreenState extends State<CartScreen> {
 
   createTotalCount() {
     setState(() {
-      total = 0.0;
+      total = 0;
     });
     user.cart.forEach((element) {
       total += element.count * element.item.price;
@@ -43,7 +47,7 @@ class _CartScreenState extends State<CartScreen> {
     setState(() {});
   }
 
-  double total = 0.0;
+  int total = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             bottomNavigationBar: Container(
               padding: EdgeInsets.all(10),
-              height: 115,
+              height: 125,
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,9 +91,58 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 8,
                   ),
-                  MainButton('BUY NOW'),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      height: 50,
+                      child: TextButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff5680E9))),
+                        onPressed: () async {
+                          User user = await UserService.getUser();
+                          // user.cart.clear();
+                          Order order = Order(
+                              itemsPrice: total,
+                              shippingPrice: 50,
+                              totalPrice: int.parse(total.toString()) + 50,
+                              shippingInfo: ShippingInfo(
+                                  address: user.address, phoneNo: user.phone),
+                              isPaid: false,
+                              user: user,
+                              orderItems: [
+                                OrderItem(item: user.cart.first.item, count: 1)
+                              ],
+                              transactionId: "hello",
+                              orderStatus: "Placed");
+                          bool isCreated = await OrderService.createorder(jsonEncode(order.toJson()));
+                          // bool isUpdate = await UserService.updateUser(
+                          //     jsonEncode(user.toJson()));
+                          if (isCreated) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Order added successfully")));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("order addition failed")));
+                          }
+                        },
+                        child: Text(
+                          "Place Order",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

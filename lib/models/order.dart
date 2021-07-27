@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:wyttle_app/models/product.dart';
 import 'package:wyttle_app/models/user.dart';
 List<Order> orderFromJson(String str) =>
     List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
@@ -13,34 +14,32 @@ String orderToJson(List<Order> data) =>
 
 class Order {
   Order({
-    required this.shippingInfo,
-    required this.isPaid,
-    required this.itemsPrice,
-    required this.shippingPrice,
-    required this.totalPrice,
-    required this.id,
-    required this.user,
-    required this.orderItems,
-    required this.transactionId,
-    required this.orderStatus,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
+    this.shippingInfo,
+    this.isPaid,
+    this.itemsPrice,
+    this.shippingPrice,
+    this.totalPrice,
+    this.id,
+    this.user,
+    this.orderItems,
+    this.transactionId,
+    this.orderStatus,
+     this.createdAt,
+     this.updatedAt,
   });
 
-  final ShippingInfo shippingInfo;
-  final bool isPaid;
-  final int itemsPrice;
-  final int shippingPrice;
-  final int totalPrice;
-  final String id;
-  final User user;
-  final List<OrderItem> orderItems;
-  final String transactionId;
-  final String orderStatus;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int v;
+  final ShippingInfo? shippingInfo;
+  final bool? isPaid;
+  final int? itemsPrice;
+  final int? shippingPrice;
+  final int? totalPrice;
+  final String? id;
+  final User? user;
+  final List<OrderItem>? orderItems;
+  final String? transactionId;
+  final String? orderStatus;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
         shippingInfo: ShippingInfo.fromJson(json["shippingInfo"]),
@@ -56,122 +55,54 @@ class Order {
         orderStatus: json["orderStatus"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
-        "shippingInfo": shippingInfo.toJson(),
+        "shippingInfo": shippingInfo!.toJson(),
         "isPaid": isPaid,
         "itemsPrice": itemsPrice,
         "shippingPrice": shippingPrice,
         "totalPrice": totalPrice,
         "_id": id,
-        "user": user.toJson(),
-        "orderItems": List<dynamic>.from(orderItems.map((x) => x.toJson())),
+        "user": user!.toJson(),
+        "orderItems": List<dynamic>.from(orderItems!.map((x) => x.toJson())),
         "transactionId": transactionId,
         "orderStatus": orderStatus,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
       };
 }
 
 class OrderItem {
   OrderItem({
-    required this.id,
-    required this.item,
-    required this.count,
+    this.id,
+    this.item,
+    this.count,
   });
 
-  final String id;
-  final Item item;
-  final int count;
+  final String? id;
+  final Product? item;
+  final int? count;
 
   factory OrderItem.fromJson(Map<String, dynamic> json) => OrderItem(
         id: json["_id"],
-        item: Item.fromJson(json["item"]),
+        item: Product.fromJson(json["item"]),
         count: json["count"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-        "item": item.toJson(),
+        "item": item!.toJson(),
         "count": count,
-      };
-}
-
-class Item {
-  Item({
-    required this.price,
-    required this.ratings,
-    required this.numOfReviews,
-    required this.stock,
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.imageurl,
-    required this.category,
-    required this.reviews,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
-  });
-
-  final int price;
-  final int ratings;
-  final int numOfReviews;
-  final int stock;
-  final String id;
-  final String name;
-  final String description;
-  final String imageurl;
-  final String category;
-  final List<dynamic> reviews;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int v;
-
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
-        price: json["price"],
-        ratings: json["ratings"],
-        numOfReviews: json["numOfReviews"],
-        stock: json["stock"],
-        id: json["_id"],
-        name: json["name"],
-        description: json["description"],
-        imageurl: json["imageurl"],
-        category: json["category"],
-        reviews: List<dynamic>.from(json["reviews"].map((x) => x)),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "price": price,
-        "ratings": ratings,
-        "numOfReviews": numOfReviews,
-        "stock": stock,
-        "_id": id,
-        "name": name,
-        "description": description,
-        "imageurl": imageurl,
-        "category": category,
-        "reviews": List<dynamic>.from(reviews.map((x) => x)),
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
       };
 }
 
 class ShippingInfo {
   ShippingInfo({
-    required this.address,
-    required this.phoneNo,
+    this.address,
+    this.phoneNo,
   });
 
-  final String address;
-  final String phoneNo;
+  final String? address;
+  final String? phoneNo;
 
   factory ShippingInfo.fromJson(Map<String, dynamic> json) => ShippingInfo(
         address: json["address"],

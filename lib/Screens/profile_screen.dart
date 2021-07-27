@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wyttle_app/Screens/login_screen.dart';
+import 'package:wyttle_app/Screens/myorders_screen.dart';
 import 'package:wyttle_app/models/user.dart';
 import 'package:wyttle_app/services/authserice.dart';
 import 'package:wyttle_app/services/baseservice.dart';
@@ -10,14 +11,13 @@ import 'package:wyttle_app/services/userservice.dart';
 import 'package:wyttle_app/widgets/errorTokenWidget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({ Key? key }) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   late User user;
   bool loading = false;
   //TODO: Update this ad well as backend
@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     }
   }
-  
+
   logout() async {
     AuthService.clearAuth();
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,6 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -62,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+            backgroundColor: Colors.blueGrey[50],
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -124,8 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "Coins: " +
-                                    "${user.numOfCoins}",
+                                "Coins: " + "${user.numOfCoins}",
                                 style: GoogleFonts.nunito(
                                   fontSize: 20,
                                   color: Colors.cyan.shade900,
@@ -136,14 +136,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 16,
                             ),
-                            
                           ],
                         ),
                       ),
                     ),
                   ),
                 ),
-                MaterialButton(onPressed: logout, child: Text("Logout")),
+                ListTile(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MyOrdersScreen(),
+                        ),
+                      );
+                    },
+                    leading: Icon(Icons.history_edu),
+                    title: Text("Order History"),
+                    trailing: Icon(Icons.arrow_forward_ios)),
+                MaterialButton(
+                  onPressed: logout,
+                  child: Text("Logout"),
+                ),
               ],
             ),
           );

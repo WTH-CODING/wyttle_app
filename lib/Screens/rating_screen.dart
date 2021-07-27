@@ -41,7 +41,7 @@ class _RatingScreenState extends State<RatingScreen> {
                   Container(
                     height: 80,
                     width: 80,
-                    child: Image.asset(widget.address),
+                    child: Image.network(widget.address),
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 10),

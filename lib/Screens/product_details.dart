@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:wyttle_app/models/product.dart';
+import 'package:wyttle_app/models/user.dart';
+import 'package:wyttle_app/services/userservice.dart';
 import 'package:wyttle_app/widgets/widget.dart';
 import 'package:wyttle_app/widgets/CarouselProduct.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -23,7 +27,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(height:30),
+          SizedBox(height: 30),
           Expanded(
             flex: 1,
             child: CustomIndicator(),
@@ -66,7 +70,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                         width: 20,
                       ),
                       Text(
-                        '(${widget.product.numOfReviews+1} Reviews)',
+                        '(${widget.product.numOfReviews + 1} Reviews)',
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.black54,
@@ -86,7 +90,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                             fontWeight: FontWeight.w700, fontSize: 18),
                       ),
                       Text(
-                        widget.product.stock>0
+                        widget.product.stock > 0
                             ? 'Available in stock'
                             : 'Not available in stock',
                         style: TextStyle(
@@ -109,7 +113,7 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
                     height: 15,
                   ),
                   Text(
-                    'Declare desctextshowflag this bool variable as global, and are there any way to increase the text widget height dynamically because here I want to give the maxline property as default, this maxline property also',
+                    widget.product.description,
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 15,
@@ -122,9 +126,45 @@ class _ProductScreenState extends State<ProductDetailsScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.all(10),
-        child: MainButton('ADD TO CART'),
+        child: Container(
+          height: 50,
+          child: TextButton(
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                )),
+                backgroundColor: MaterialStateProperty.all(Color(0xff5680E9))),
+            onPressed: () async {
+              User user = await UserService.getUser();
+              user.cart.add(
+                Cart(
+                  count: 1,
+                  item: widget.product,
+                ),
+              );
+              bool isUpdate =
+                  await UserService.updateUser(jsonEncode(user.toJson()));
+              if (isUpdate) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Product added successfully")));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Product addition failed")));
+              }
+            },
+            child: Text(
+              "Add To Cart",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

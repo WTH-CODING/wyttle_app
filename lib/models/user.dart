@@ -88,12 +88,12 @@ class User {
 
 class Cart {
   Cart({
-    required this.id,
+    this.id,
     required this.item,
     required this.count,
   });
 
-  String id;
+  String? id;
   Product item;
   int count;
 
